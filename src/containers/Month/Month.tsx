@@ -10,6 +10,20 @@ const Month = () => {
     const [year, setYear] = useState(getMonthName.currYear);
     const [days, setDays] = useState(getMonthName.daysInMonth);
     const [firstDay, setfirstDay] = useState(getMonthName.firstDayString);
+    const [blankDayArr, setBlankDayArr] = useState([
+        ...Array(getMonthName.firstDayNum - 1).keys(),
+    ]);
+    const [dayArr, setDayArr] = useState([
+        ...Array(getMonthName.daysInMonth).keys(),
+    ]);
+    // const [combinedDays, setCombinedDays] = useState([
+    //     ...blankDayArr,
+    //     ...dayArr,
+    // ]);
+    // setCombinedDays([
+    //     ...Array(getMonthName.firstDayNum - 1).keys(),
+    //     ...Array(getMonthName.daysInMonth).keys(),
+    // ]);
 
     const daysOfWeek = [
         "Monday",
@@ -26,6 +40,8 @@ const Month = () => {
         setDays(getMonthName.daysInMonth);
         setYear(getMonthName.currYear);
         setfirstDay(getMonthName.firstDayString);
+        setBlankDayArr([...Array(getMonthName.firstDayNum - 1).keys()]);
+        setDayArr([...Array(getMonthName.daysInMonth).keys()]);
     };
 
     const onPrevMonth = () => {
@@ -53,18 +69,34 @@ const Month = () => {
                     <tr>
                         {daysOfWeek.map((day) => {
                             return (
-                                <th key={day} className={styles.table__header}>
+                                <th className={styles.table__header} key={day}>
                                     {day}
                                 </th>
                             );
                         })}
                     </tr>
                 </thead>
+                <tbody>
+                    {
+                        <tr>
+                            {blankDayArr.map(() => {
+                                return <td></td>;
+                            })}
+                            {dayArr.map((day) => {
+                                return (
+                                    <td>
+                                        <Day dayNum={day + 1} />
+                                    </td>
+                                );
+                            })}
+                        </tr>
+                    }
+                </tbody>
             </table>
             <div className={styles.cal}>
-                {[...Array(days).fill(0)].map((_, i) => (
+                {/* {[...Array(days).fill(0)].map((_, i) => (
                     <Day key={i} dayNum={i + 1} />
-                ))}
+                ))} */}
             </div>
         </div>
     );
