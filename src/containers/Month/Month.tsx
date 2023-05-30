@@ -7,25 +7,28 @@ const Month = () => {
     let getMonthName = getMonth();
     const [monthInt, setMonthInt] = useState(getMonthName.monthInt + 1);
     const [monthString, setMonthString] = useState(getMonthName.monthString);
+    const [year, setYear] = useState(getMonthName.currYear);
 
     const onPrevMonth = () => {
-        getMonthName = getMonth(2023, monthInt - 1);
+        getMonthName = getMonth(getMonthName.currYear, monthInt - 1);
         setMonthInt(monthInt - 1);
         setMonthString(getMonthName.monthString);
-        console.log(getMonthName);
+        setYear(getMonthName.currYear);
     };
 
     const onNextMonth = () => {
-        getMonthName = getMonth(2023, monthInt + 1);
+        getMonthName = getMonth(getMonthName.currYear, monthInt + 1);
         setMonthInt(monthInt + 1);
         setMonthString(getMonthName.monthString);
-        console.log(getMonthName);
+        setYear(getMonthName.currYear);
     };
 
     return (
         <div>
             <button onClick={onPrevMonth}>Previous</button>
-            <h1>{monthString}</h1>
+            <h1>
+                {monthString} {year}
+            </h1>
             <button onClick={onNextMonth}>Next</button>
             <div className={styles.cal}>
                 <Day />
