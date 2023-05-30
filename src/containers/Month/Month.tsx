@@ -106,11 +106,11 @@ const Month = () => {
                 <tbody>
                     {getRows().rows.map((d: any) => {
                         return (
-                            <tr>
-                                {d.map((dayNum: number) => {
+                            <tr key={d}>
+                                {d.map((dayNum: number, i: number) => {
                                     return (
-                                        <td>
-                                            <Day dayNum={dayNum} />
+                                        <td key={dayNum}>
+                                            <Day key={i} dayNum={dayNum} />
                                         </td>
                                     );
                                 })}
