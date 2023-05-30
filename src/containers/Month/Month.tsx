@@ -11,19 +11,20 @@ const Month = () => {
     const [days, setDays] = useState(getMonthName.daysInMonth);
     const [firstDay, setfirstDay] = useState(getMonthName.firstDayString);
     const [blankDayArr, setBlankDayArr] = useState([
-        ...Array(getMonthName.firstDayNum - 1).keys(),
+        ...Array(getMonthName.firstDayNum - 1).fill(-1),
     ]);
     const [dayArr, setDayArr] = useState([
         ...Array(getMonthName.daysInMonth).keys(),
     ]);
-    // const [combinedDays, setCombinedDays] = useState([
-    //     ...blankDayArr,
-    //     ...dayArr,
-    // ]);
-    // setCombinedDays([
-    //     ...Array(getMonthName.firstDayNum - 1).keys(),
-    //     ...Array(getMonthName.daysInMonth).keys(),
-    // ]);
+    const [combinedDays, setCombinedDays] = useState([
+        ...blankDayArr,
+        ...dayArr,
+    ]);
+    const [tableRows, setTableRows] = useState([
+        ...Array(Math.ceil(combinedDays.length / 7)).keys(),
+    ]);
+
+    console.log(tableRows);
 
     const daysOfWeek = [
         "Monday",
@@ -40,8 +41,14 @@ const Month = () => {
         setDays(getMonthName.daysInMonth);
         setYear(getMonthName.currYear);
         setfirstDay(getMonthName.firstDayString);
-        setBlankDayArr([...Array(getMonthName.firstDayNum - 1).keys()]);
+        console.log(getMonthName.firstDayNum);
+        setBlankDayArr([...Array(getMonthName.firstDayNum).fill(-1)]);
+        setCombinedDays([
+            ...Array(getMonthName.firstDayNum).fill(-1),
+            ...Array(getMonthName.daysInMonth).keys(),
+        ]);
         setDayArr([...Array(getMonthName.daysInMonth).keys()]);
+        for (let i = 0; i < Math.ceil(combinedDays.length / 7); i++) {}
     };
 
     const onPrevMonth = () => {
@@ -54,6 +61,25 @@ const Month = () => {
         getMonthName = getMonth(getMonthName.currYear, monthInt + 1);
         setMonthInt(monthInt + 1);
         setters();
+    };
+
+    const getRows = () => {
+        let rows: any = [];
+        let cells: any = [];
+        combinedDays.map((day, i) => {
+            day = day + 1;
+            if (i % 7 !== 0) {
+                cells.push(day);
+            } else {
+                rows.push(cells);
+                cells = [];
+                cells.push(day);
+            }
+            if (i === combinedDays.length - 1) {
+                rows.push(cells);
+            }
+        });
+        return { rows, cells };
     };
 
     return (
@@ -77,27 +103,21 @@ const Month = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {
-                        <tr>
-                            {blankDayArr.map(() => {
-                                return <td></td>;
-                            })}
-                            {dayArr.map((day) => {
-                                return (
-                                    <td>
-                                        <Day dayNum={day + 1} />
-                                    </td>
-                                );
-                            })}
-                        </tr>
-                    }
+                    {getRows().rows.map((d: any) => {
+                        return (
+                            <tr>
+                                {d.map((dayNum: number) => {
+                                    return (
+                                        <td>
+                                            <Day dayNum={dayNum} />
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
-            <div className={styles.cal}>
-                {/* {[...Array(days).fill(0)].map((_, i) => (
-                    <Day key={i} dayNum={i + 1} />
-                ))} */}
-            </div>
         </div>
     );
 };
