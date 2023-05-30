@@ -41,12 +41,20 @@ const Month = () => {
         setDays(getMonthName.daysInMonth);
         setYear(getMonthName.currYear);
         setfirstDay(getMonthName.firstDayString);
-        console.log(getMonthName.firstDayNum);
-        setBlankDayArr([...Array(getMonthName.firstDayNum).fill(-1)]);
-        setCombinedDays([
-            ...Array(getMonthName.firstDayNum).fill(-1),
-            ...Array(getMonthName.daysInMonth).keys(),
-        ]);
+        if (getMonthName.firstDayNum === 0) {
+            setBlankDayArr([...Array(6).fill(-1)]);
+            setCombinedDays([
+                ...Array(6).fill(-1),
+                ...Array(getMonthName.daysInMonth).keys(),
+            ]);
+        } else {
+            setBlankDayArr([...Array(getMonthName.firstDayNum - 1).fill(-1)]);
+            setCombinedDays([
+                ...Array(getMonthName.firstDayNum - 1).fill(-1),
+                ...Array(getMonthName.daysInMonth).keys(),
+            ]);
+        }
+
         setDayArr([...Array(getMonthName.daysInMonth).keys()]);
         for (let i = 0; i < Math.ceil(combinedDays.length / 7); i++) {}
     };
