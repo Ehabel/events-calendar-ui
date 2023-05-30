@@ -8,7 +8,6 @@ const Month = () => {
     const [monthInt, setMonthInt] = useState(getMonthName.monthInt + 1);
     const [monthString, setMonthString] = useState(getMonthName.monthString);
     const [year, setYear] = useState(getMonthName.currYear);
-    const [days, setDays] = useState(getMonthName.daysInMonth);
     const [firstDay, setfirstDay] = useState(getMonthName.firstDayString);
     const [blankDayArr, setBlankDayArr] = useState([
         ...Array(getMonthName.firstDayNum - 1).fill(-1),
@@ -20,11 +19,6 @@ const Month = () => {
         ...blankDayArr,
         ...dayArr,
     ]);
-    const [tableRows, setTableRows] = useState([
-        ...Array(Math.ceil(combinedDays.length / 7)).keys(),
-    ]);
-
-    console.log(tableRows);
 
     const daysOfWeek = [
         "Monday",
@@ -38,7 +32,6 @@ const Month = () => {
 
     const setters = () => {
         setMonthString(getMonthName.monthString);
-        setDays(getMonthName.daysInMonth);
         setYear(getMonthName.currYear);
         setfirstDay(getMonthName.firstDayString);
         if (getMonthName.firstDayNum === 0) {
