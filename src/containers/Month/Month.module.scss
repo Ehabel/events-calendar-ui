@@ -1,3 +1,11 @@
 .cal {
     display: flex;
+    flex-direction: column;
+}
+
+.table {
+    &__header {
+        padding: 5px;
+        margin: 15px;
+    }
 }

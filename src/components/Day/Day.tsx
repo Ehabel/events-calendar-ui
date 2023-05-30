@@ -1,5 +1,5 @@
 import styles from "./Day.module.scss";
 
-export const Day = () => {
-    return <div className={styles.card}>Day</div>;
+export const Day = ({ dayNum }: any) => {
+    return <div className={styles.card}>{dayNum}</div>;
 };
