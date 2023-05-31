@@ -10,7 +10,7 @@ const Month = () => {
     const [monthInt, setMonthInt] = useState(getMonthName.monthInt + 1);
     const [monthString, setMonthString] = useState(getMonthName.monthString);
     const [year, setYear] = useState(getMonthName.currYear);
-    const [firstDay, setfirstDay] = useState(getMonthName.firstDayString);
+    // const [firstDay, setfirstDay] = useState(getMonthName.firstDayString);
     const [blankDayArr, setBlankDayArr] = useState([
         ...Array(getMonthName.firstDayNum - 1).fill(-1),
     ]);
@@ -35,7 +35,7 @@ const Month = () => {
     const setters = () => {
         setMonthString(getMonthName.monthString);
         setYear(getMonthName.currYear);
-        setfirstDay(getMonthName.firstDayString);
+        // setfirstDay(getMonthName.firstDayString);
         if (getMonthName.firstDayNum === 0) {
             setBlankDayArr([...Array(6).fill(-1)]);
             setCombinedDays([
