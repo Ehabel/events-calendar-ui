@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Day } from "../../components/Day/Day";
 import { getMonth } from "../../services/RetrieveMonth";
 import styles from "./Month.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 
 const Month = () => {
     let getMonthName = getMonth();
@@ -92,11 +94,21 @@ const Month = () => {
     return (
         <div className={styles.cal}>
             <div className={styles.cal__header}>
-                <button onClick={onPrevMonth}>Previous</button>
-                <h1>
+                <button onClick={onPrevMonth} className={styles.btn}>
+                    <FontAwesomeIcon
+                        icon={faBackward}
+                        style={{ color: "#000000" }}
+                    />
+                </button>
+                <h1 className={styles.cal__header__text}>
                     {monthString} {year}
                 </h1>
-                <button onClick={onNextMonth}>Next</button>
+                <button onClick={onNextMonth} className={styles.btn}>
+                    <FontAwesomeIcon
+                        icon={faForward}
+                        style={{ color: "#000000" }}
+                    />
+                </button>
             </div>
             <table className={styles.table}>
                 <thead>

@@ -4,7 +4,9 @@ import Month from "./containers/Month/Month";
 function App() {
     return (
         <>
-            <Month />
+            <div className="main">
+                <Month />
+            </div>
         </>
     );
 }
