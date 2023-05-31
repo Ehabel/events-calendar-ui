@@ -1,12 +1,27 @@
 .cal {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    &__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .table {
+    border: 1px solid white;
+    border-collapse: collapse;
     &__header {
         padding: 5px;
         margin: 15px;
         min-width: 150px;
+    }
+    &__row {
+    }
+    &__data {
+        border: 1px solid white;
     }
 }

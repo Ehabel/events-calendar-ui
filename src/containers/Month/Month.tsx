@@ -80,20 +80,27 @@ const Month = () => {
                 rows.push(cells);
             }
         });
+        rows.map((row: any) => {
+            if (row.length % 7 !== 0) {
+                let newItems = [...Array(7 - (row.length % 7)).fill(0)];
+                row.push(...newItems);
+            }
+        });
         return { rows, cells };
     };
 
     return (
-        <div>
-            <button onClick={onPrevMonth}>Previous</button>
-            <h1>
-                {monthString} {year}
-            </h1>
-            <p>{firstDay}</p>
-            <button onClick={onNextMonth}>Next</button>
-            <table>
+        <div className={styles.cal}>
+            <div className={styles.cal__header}>
+                <button onClick={onPrevMonth}>Previous</button>
+                <h1>
+                    {monthString} {year}
+                </h1>
+                <button onClick={onNextMonth}>Next</button>
+            </div>
+            <table className={styles.table}>
                 <thead>
-                    <tr>
+                    <tr className={styles.table__row__header}>
                         {daysOfWeek.map((day) => {
                             return (
                                 <th className={styles.table__header} key={day}>
@@ -109,7 +116,10 @@ const Month = () => {
                             <tr key={d}>
                                 {d.map((dayNum: number, i: number) => {
                                     return (
-                                        <td key={dayNum}>
+                                        <td
+                                            key={i + monthString + year}
+                                            className={styles.table__data}
+                                        >
                                             <Day key={i} dayNum={dayNum} />
                                         </td>
                                     );

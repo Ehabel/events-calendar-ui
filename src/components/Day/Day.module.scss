@@ -1,4 +1,7 @@
 .card {
-    padding: 10px;
-    border: 1px solid white;
+    padding: 0 10px 30px 15px;
+    min-height: 50px;
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
 }
