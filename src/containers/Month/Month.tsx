@@ -5,7 +5,7 @@ import styles from "./Month.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBackward, faForward } from "@fortawesome/free-solid-svg-icons";
 
-const Month = () => {
+const Month = ({ events }: any) => {
     let getMonthName = getMonth();
     const [monthInt, setMonthInt] = useState(getMonthName.monthInt + 1);
     const [monthString, setMonthString] = useState(getMonthName.monthString);
@@ -135,14 +135,13 @@ const Month = () => {
                                             <Day
                                                 key={i}
                                                 dayNum={dayNum}
+                                                events={events}
                                                 currDate={
                                                     new Date(
                                                         year,
                                                         monthInt - 2,
                                                         dayNum + 1
                                                     )
-                                                        .toISOString()
-                                                        .split("T")[0]
                                                 }
                                             />
                                         </td>

@@ -45,7 +45,7 @@ export const DayForm = ({ currDate }: any) => {
                     type="date"
                     id="startDate"
                     name="startDate"
-                    min={currDate}
+                    min={currDate.toISOString().split("T")[0]}
                     onChange={formChange}
                     required
                 />
@@ -54,7 +54,7 @@ export const DayForm = ({ currDate }: any) => {
                     type="date"
                     id="endDate"
                     name="endDate"
-                    min={currDate}
+                    min={currDate.toISOString().split("T")[0]}
                     onChange={formChange}
                     required
                 />
