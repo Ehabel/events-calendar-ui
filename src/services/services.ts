@@ -23,7 +23,7 @@ export const addNewEvent = async (postData: object) => {
     });
 
     if (!response.ok) {
-        throw new Error("Could not create the post");
+        throw new Error("Could not create the event");
     }
     console.log("created");
 };
