@@ -132,7 +132,19 @@ const Month = () => {
                                             key={i + monthString + year}
                                             className={styles.table__data}
                                         >
-                                            <Day key={i} dayNum={dayNum} />
+                                            <Day
+                                                key={i}
+                                                dayNum={dayNum}
+                                                currDate={
+                                                    new Date(
+                                                        year,
+                                                        monthInt - 2,
+                                                        dayNum + 1
+                                                    )
+                                                        .toISOString()
+                                                        .split("T")[0]
+                                                }
+                                            />
                                         </td>
                                     );
                                 })}
