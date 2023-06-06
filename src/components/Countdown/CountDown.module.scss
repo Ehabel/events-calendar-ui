@@ -1,0 +1,15 @@
+.time {
+    display: flex;
+    flex-direction: row;
+}
+
+.unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &__para {
+        margin: 0;
+        padding: 10px;
+    }
+}

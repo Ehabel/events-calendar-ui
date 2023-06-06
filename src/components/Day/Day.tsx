@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Day.module.scss";
 import DayModal from "../DayModal/DayModal";
+import { EventCard } from "../EventCard/EventCard";
 
 export const Day = ({ dayNum, currDate, events }: any) => {
     const [openModal, setopenModal] = useState(false);
@@ -31,18 +32,15 @@ export const Day = ({ dayNum, currDate, events }: any) => {
                 <div>
                     {dayEvents.map((event: any) => {
                         return (
-                            <div key={event.eventName + event.id}>
-                                {event.eventName}
-                            </div>
+                            <EventCard
+                                key={event.eventName + event.id}
+                                event={event}
+                            />
                         );
                     })}
                 </div>
             </>
-            {openModal ? (
-                <DayModal currDate={currDate} onChange={closeModalView} />
-            ) : (
-                <></>
-            )}
+            {openModal ? <DayModal onChange={closeModalView} /> : <></>}
         </>
     ) : (
         <div className={styles.card}>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Day } from "../../components/Day/Day";
 import { getMonth } from "../../services/RetrieveMonth";
 import styles from "./Month.module.scss";
@@ -10,7 +10,6 @@ const Month = ({ events }: any) => {
     const [monthInt, setMonthInt] = useState(getMonthName.monthInt + 1);
     const [monthString, setMonthString] = useState(getMonthName.monthString);
     const [year, setYear] = useState(getMonthName.currYear);
-    // const [firstDay, setfirstDay] = useState(getMonthName.firstDayString);
     const [blankDayArr, setBlankDayArr] = useState([
         ...Array(getMonthName.firstDayNum - 1).fill(-1),
     ]);
@@ -35,7 +34,6 @@ const Month = ({ events }: any) => {
     const setters = () => {
         setMonthString(getMonthName.monthString);
         setYear(getMonthName.currYear);
-        // setfirstDay(getMonthName.firstDayString);
         if (getMonthName.firstDayNum === 0) {
             setBlankDayArr([...Array(6).fill(-1)]);
             setCombinedDays([
