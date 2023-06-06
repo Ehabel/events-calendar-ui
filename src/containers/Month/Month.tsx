@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Day } from "../../components/Day/Day";
 import { getMonth } from "../../services/RetrieveMonth";
 import styles from "./Month.module.scss";
