@@ -32,7 +32,7 @@
 ## Build Steps
 
 -   Install required packaged using: npm install
--   Run using npm run dev
+-   Run using: npm run dev
 
 ---
 
